@@ -1,6 +1,7 @@
 # Git
 .git
 .gitignore
+README.md
 
 # Python
 __pycache__
@@ -48,6 +49,22 @@ venv.bak/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Project specific
+*.ps1
+*.sh
+Dockerfile*
+docker-compose*
+.dockerignore
+deploy-*
+vercel.json
+render.yaml
+railway.json
+Procfile
+test_*.py
+run_dev.py
+VERCEL_DEPLOYMENT.md
+values.txt
 
 # Documentation
 README.md
