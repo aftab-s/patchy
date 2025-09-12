@@ -206,3 +206,4 @@ node_modules/
 
 # TernJS port file
 .tern-port
+.vercel
