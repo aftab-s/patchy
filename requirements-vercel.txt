@@ -1,0 +1,2 @@
+# Vercel Serverless Dependencies
+httpx==0.25.2

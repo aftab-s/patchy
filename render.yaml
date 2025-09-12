@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: patchy-github-discord-webhook-bot
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: DISCORD_TOKEN
+        sync: false
+      - key: DISCORD_CHANNEL_ID
+        sync: false
+      - key: GITHUB_WEBHOOK_SECRET
+        sync: false
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: 8000
+      - key: DEBUG
+        value: false
+      - key: LOG_LEVEL
+        value: INFO
