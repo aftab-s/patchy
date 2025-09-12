@@ -35,25 +35,22 @@ class Config:
     # Logging Configuration
     LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")
     
-    @classmethod
-    def get_discord_channel_id(cls) -> int:
+    # Properties for backward compatibility - initialize as properties
+    @property
+    def DISCORD_CHANNEL_ID(self) -> int:
         """Get Discord channel ID with proper error handling."""
         try:
             return int(os.getenv("DISCORD_CHANNEL_ID", "0"))
         except (ValueError, TypeError):
             return 0
     
-    @classmethod
-    def get_port(cls) -> int:
+    @property
+    def PORT(self) -> int:
         """Get port with proper error handling."""
         try:
             return int(os.getenv("PORT", "8000"))
         except (ValueError, TypeError):
             return 8000
-    
-    # Properties for backward compatibility
-    DISCORD_CHANNEL_ID: int = get_discord_channel_id()
-    PORT: int = get_port()
     
     @classmethod
     def validate(cls) -> bool:
@@ -66,9 +63,11 @@ class Config:
         Raises:
             ValueError: If required configuration values are missing
         """
+        # Create instance to access properties
+        instance = cls()
         required_vars = {
             "DISCORD_TOKEN": cls.DISCORD_TOKEN,
-            "DISCORD_CHANNEL_ID": cls.DISCORD_CHANNEL_ID,
+            "DISCORD_CHANNEL_ID": instance.DISCORD_CHANNEL_ID,
             "GITHUB_WEBHOOK_SECRET": cls.GITHUB_WEBHOOK_SECRET,
         }
         

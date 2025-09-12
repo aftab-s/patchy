@@ -13,7 +13,7 @@ from pathlib import Path
 # Add the current directory to Python path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from config import config, setup_logging
+from config import config
 from main import main
 
 if __name__ == "__main__":
@@ -24,7 +24,7 @@ if __name__ == "__main__":
     development-friendly settings.
     """
     # Set up logging
-    setup_logging()
+    config.setup_logging()
     logger = logging.getLogger(__name__)
     
     # Validate configuration

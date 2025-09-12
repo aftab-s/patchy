@@ -16,10 +16,10 @@ import uvicorn
 from fastapi import FastAPI
 from webhook_server import app as webhook_app
 from discord_bot import start_bot, stop_bot
-from config import config, setup_logging
+from config import config
 
 # Set up logging
-setup_logging()
+config.setup_logging()
 logger = logging.getLogger(__name__)
 
 
