@@ -18,11 +18,11 @@
 
 ## 🎯 Deployment Status
 
-### ✅ Live Application
-- **🌍 Railway Endpoint**: `https://web-production-13df.up.railway.app/`
-- **🏥 Health Check**: `https://web-production-13df.up.railway.app/health` - ✅ **Healthy**
-- **🪝 Webhook Endpoint**: `https://web-production-13df.up.railway.app/webhook`
-- **📊 Status**: **OPERATIONAL**
+### ✅ Your Deployed Application
+- **🌍 Railway Endpoint**: `https://your-app.up.railway.app/`
+- **🏥 Health Check**: `https://your-app.up.railway.app/health`
+- **🪝 Webhook Endpoint**: `https://your-app.up.railway.app/webhook`
+- **📊 Status**: Check your Railway dashboard for live status
 
 ### 📈 Application Info
 ```
@@ -74,7 +74,7 @@ If you're setting up from scratch or need to redeploy:
 
 3. **⚙️ Configure Webhook Settings**:
    ```
-   📡 Payload URL: https://web-production-13df.up.railway.app/webhook
+   📡 Payload URL: https://your-app.up.railway.app/webhook
    📋 Content type: application/json  
    🔐 Secret: [Your GITHUB_WEBHOOK_SECRET]
    
@@ -156,7 +156,7 @@ git push
 
 ```powershell
 # Test the health endpoint
-Invoke-WebRequest -Uri "https://web-production-13df.up.railway.app/health"
+Invoke-WebRequest -Uri "https://your-app.up.railway.app/health"
 
 # Expected response:
 # StatusCode: 200
@@ -255,7 +255,7 @@ Railway automatically monitors your application health:
 
 ```powershell
 # Manual health check
-Invoke-WebRequest -Uri "https://web-production-13df.up.railway.app/health"
+Invoke-WebRequest -Uri "https://your-app.up.railway.app/health"
 
 # Expected healthy response:
 # {
@@ -335,7 +335,7 @@ Consider setting up external monitoring:
 # Simple PowerShell monitoring script
 function Test-BotHealth {
     try {
-        $response = Invoke-WebRequest -Uri "https://web-production-13df.up.railway.app/health"
+        $response = Invoke-WebRequest -Uri "https://your-app.up.railway.app/health"
         if ($response.StatusCode -eq 200) {
             Write-Host "✅ Bot is healthy" -ForegroundColor Green
         }
@@ -369,7 +369,7 @@ railway logs --tail=50
 railway variables
 
 # 3. Test health endpoint
-Invoke-WebRequest -Uri "https://web-production-13df.up.railway.app/health"
+Invoke-WebRequest -Uri "https://your-app.up.railway.app/health"
 ```
 
 **Common Causes & Solutions**:
@@ -454,11 +454,11 @@ railway logs --deployment <deployment-id>
 railway variables
 
 # Test local connection to Railway
-Test-NetConnection web-production-13df.up.railway.app -Port 443
+Test-NetConnection your-app.up.railway.app -Port 443
 
 # Manual webhook test
 $headers = @{ "X-GitHub-Event" = "ping"; "Content-Type" = "application/json" }
-Invoke-RestMethod -Uri "https://web-production-13df.up.railway.app/webhook" -Method POST -Headers $headers -Body "{}"
+Invoke-RestMethod -Uri "https://your-app.up.railway.app/webhook" -Method POST -Headers $headers -Body "{}"
 ```
 
 ### 🩺 Health Check Troubleshooting
@@ -466,9 +466,9 @@ Invoke-RestMethod -Uri "https://web-production-13df.up.railway.app/webhook" -Met
 #### Health Endpoint Not Responding
 ```powershell
 # Test different endpoints
-Invoke-WebRequest -Uri "https://web-production-13df.up.railway.app/"        # Root endpoint
-Invoke-WebRequest -Uri "https://web-production-13df.up.railway.app/health"  # Health check
-Invoke-WebRequest -Uri "https://web-production-13df.up.railway.app/docs"    # API docs (if enabled)
+Invoke-WebRequest -Uri "https://your-app.up.railway.app/"        # Root endpoint
+Invoke-WebRequest -Uri "https://your-app.up.railway.app/health"  # Health check
+Invoke-WebRequest -Uri "https://your-app.up.railway.app/docs"    # API docs (if enabled)
 ```
 
 #### Intermittent Health Check Failures
@@ -494,7 +494,7 @@ railway variables
 railway logs --tail=20
 
 Write-Host "`n=== Health Check ==="
-try { Invoke-WebRequest -Uri "https://web-production-13df.up.railway.app/health" } catch { $_.Exception.Message }
+try { Invoke-WebRequest -Uri "https://your-app.up.railway.app/health" } catch { $_.Exception.Message }
 
 Write-Host "`n=== GitHub Webhook Status ==="
 # Check GitHub webhook delivery logs manually
@@ -562,7 +562,7 @@ After each deployment, verify everything works:
 
 ```powershell
 # 1. Check health endpoint
-Invoke-WebRequest -Uri "https://web-production-13df.up.railway.app/health"
+Invoke-WebRequest -Uri "https://your-app.up.railway.app/health"
 
 # 2. Test webhook with a commit
 git commit --allow-empty -m "Test deployment webhook"

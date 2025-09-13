@@ -9,7 +9,7 @@ A production-ready Discord bot named "Patchy" that receives GitHub webhook event
 - 🔒 **Secure**: GitHub webhook signature verification for security
 - 📊 **Comprehensive Event Support**: Push, Pull Requests, Issues, Releases, Branch/Tag creation/deletion
 - 🛡️ **Production Ready**: Comprehensive error handling, logging, and monitoring
-- 🚢 **Easy Deployment**: Ready for Vercel (serverless), Railway, Render, Heroku, and Docker
+- 🚢 **Easy Deployment**: Ready for Render (Docker), Railway, Vercel (serverless), and Docker
 - 💰 **Cost-Effective**: Free tier options available for internal use
 
 ## 📁 Project Structure
@@ -138,6 +138,33 @@ LOG_LEVEL=INFO
 1. **Connect your repository**:
    - Go to [Railway](https://railway.app)
    - Connect your GitHub repository
+## 🚀 Deployment Options
+
+### Render Deployment (Recommended - Docker)
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/YOUR-USERNAME/YOUR-REPO-NAME)
+
+**Quick Setup**:
+1. Click the "Deploy to Render" button above
+2. Set your environment variables during setup
+3. Wait for build completion (2-5 minutes)
+4. Configure GitHub webhook with your new Render URL
+
+📖 **Complete Render guide**: See [`docs/RENDER_DEPLOYMENT.md`](docs/RENDER_DEPLOYMENT.md)
+
+### Railway Deployment (Alternative)
+
+Fast deployment with excellent developer experience:
+
+```bash
+# One-click deploy
+railway deploy --template=your-repo
+```
+
+1. **Connect your repository**:
+   - Go to [Railway](https://railway.app)
+   - Click "New Project" → "Deploy from GitHub repo" 
+   - Select your repository
    - Deploy automatically
 
 2. **Set environment variables** in Railway dashboard:
@@ -150,7 +177,7 @@ LOG_LEVEL=INFO
 
 📖 **Detailed Railway guide**: See [`docs/RAILWAY_DEPLOYMENT.md`](docs/RAILWAY_DEPLOYMENT.md)
 
-### Vercel Deployment (Free Tier)
+### Vercel Deployment (Serverless)
 
 Perfect for internal use with serverless architecture:
 
@@ -166,7 +193,7 @@ vercel env add GITHUB_WEBHOOK_SECRET
 
 📖 **Detailed Vercel guide**: See [`docs/VERCEL_DEPLOYMENT.md`](docs/VERCEL_DEPLOYMENT.md)
 
-### Docker Deployment
+### Docker Deployment (Self-Hosted)
 
 For containerized deployment (Docker files are in root directory):
 
@@ -180,15 +207,6 @@ docker run -p 8000:8000 --env-file .env patchy-discord-bot
 ```
 
 📖 **Complete Docker guide**: See [`docs/DOCKER.md`](docs/DOCKER.md)
-   - Go to [Railway](https://railway.app)
-   - Click "New Project" → "Deploy from GitHub repo"
-   - Select your repository
-
-2. **Set environment variables**:
-   - Go to your project → Variables
-   - Add all required environment variables from your `.env` file
-
-3. **Deploy**:
    - Railway will automatically detect the `railway.json` configuration
    - Your bot will be deployed and running!
 
