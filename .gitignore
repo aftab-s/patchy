@@ -110,6 +110,7 @@ ENV/
 env.bak/
 venv.bak/
 values.txt
+.env.docker
 
 # Spyder project settings
 .spyderproject

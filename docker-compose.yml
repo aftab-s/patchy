@@ -8,14 +8,15 @@ services:
     container_name: patchy-discord-bot
     restart: unless-stopped
     environment:
-      # These will be loaded from your local .env file
+      # These variables will be loaded from your .env file automatically
+      # Docker Compose looks for .env file in the same directory
       - DISCORD_TOKEN=${DISCORD_TOKEN}
       - DISCORD_CHANNEL_ID=${DISCORD_CHANNEL_ID}
       - GITHUB_WEBHOOK_SECRET=${GITHUB_WEBHOOK_SECRET}
-      - HOST=${HOST:-0.0.0.0}
-      - PORT=${PORT:-8000}
-      - DEBUG=${DEBUG:-false}
-      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - HOST=${HOST:-0.0.0.0}              # Default: 0.0.0.0 if not set
+      - PORT=${PORT:-8000}                  # Default: 8000 if not set
+      - DEBUG=${DEBUG:-false}               # Default: false if not set
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}        # Default: INFO if not set
     ports:
       - "${PORT:-8000}:${PORT:-8000}"
     volumes:

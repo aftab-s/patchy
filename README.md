@@ -12,6 +12,22 @@ A production-ready Discord bot named "Patchy" that receives GitHub webhook event
 - 🚢 **Easy Deployment**: Ready for Vercel (serverless), Railway, Render, Heroku, and Docker
 - 💰 **Cost-Effective**: Free tier options available for internal use
 
+## 📁 Project Structure
+
+This project is organized into a clean structure:
+
+```
+discord-bot/
+├── 📄 Core Files (Essential)     # Main application files
+├── � Docker Files (Important)  # Container setup & orchestration
+├── �📚 docs/                     # Documentation guides
+├── 🛠️ dev-tools/               # Testing & development utilities  
+└── 📦 optional/                 # Alternative deployments
+    └── deployments/             # Vercel, Render, etc.
+```
+
+**📖 See [`STRUCTURE.md`](STRUCTURE.md) for detailed information about the project organization.**
+
 ## Supported GitHub Events
 
 - **Push Events**: New commits with author info and commit messages
@@ -78,6 +94,17 @@ A production-ready Discord bot named "Patchy" that receives GitHub webhook event
    python main.py
    ```
 
+4. **Local Testing** (Optional):
+   ```bash
+   # Test webhook locally
+   python dev-tools/local_test.py test push
+
+   # Or use PowerShell helper
+   ./dev-tools/local-dev.ps1 test push
+   ```
+
+📖 **Complete local testing guide**: See [`docs/LOCAL_TESTING.md`](docs/LOCAL_TESTING.md)
+
 ### 5. Environment Variables
 
 Create a `.env` file with the following variables:
@@ -99,38 +126,60 @@ LOG_LEVEL=INFO
 
 ## Deployment
 
-### Vercel Deployment (Recommended for Internal Use)
+### Quick Deployment Options
 
-Vercel offers a free tier that's perfect for internal use. The serverless architecture means no persistent connections, but it's cost-effective and easy to deploy.
+- **🚀 Railway** (Recommended): Easy deployment with persistent connections
+- **⚡ Vercel**: Free serverless option for internal use  
+- **🐳 Docker**: Containerized deployment for any platform
+- **☁️ Render**: Alternative cloud platform
 
-1. **Quick Deploy**:
-   ```bash
-   # Install Vercel CLI
-   npm install -g vercel
-   
-   # Deploy
-   vercel
-   
-   # Set environment variables
-   vercel env add DISCORD_TOKEN
-   vercel env add DISCORD_CHANNEL_ID
-   vercel env add GITHUB_WEBHOOK_SECRET
-   
-   # Deploy to production
-   vercel --prod
-   ```
-
-2. **Configure GitHub webhook**:
-   - Use your Vercel URL: `https://your-project.vercel.app/webhook`
-   - Set the same secret you used for `GITHUB_WEBHOOK_SECRET`
-
-3. **Test**: Make a commit to your repository and check Discord!
-
-📖 **Detailed Vercel instructions**: See [VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md)
-
-### Railway Deployment
+### Railway Deployment (Recommended)
 
 1. **Connect your repository**:
+   - Go to [Railway](https://railway.app)
+   - Connect your GitHub repository
+   - Deploy automatically
+
+2. **Set environment variables** in Railway dashboard:
+   - `DISCORD_TOKEN`
+   - `DISCORD_CHANNEL_ID` 
+   - `GITHUB_WEBHOOK_SECRET`
+
+3. **Configure GitHub webhook**:
+   - Use your Railway URL: `https://your-app.up.railway.app/webhook`
+
+📖 **Detailed Railway guide**: See [`docs/RAILWAY_DEPLOYMENT.md`](docs/RAILWAY_DEPLOYMENT.md)
+
+### Vercel Deployment (Free Tier)
+
+Perfect for internal use with serverless architecture:
+
+```bash
+# Quick deploy
+npx vercel
+
+# Set environment variables
+vercel env add DISCORD_TOKEN
+vercel env add DISCORD_CHANNEL_ID
+vercel env add GITHUB_WEBHOOK_SECRET
+```
+
+📖 **Detailed Vercel guide**: See [`docs/VERCEL_DEPLOYMENT.md`](docs/VERCEL_DEPLOYMENT.md)
+
+### Docker Deployment
+
+For containerized deployment (Docker files are in root directory):
+
+```bash
+# Build and run with Docker Compose
+docker-compose up --build
+
+# Or build image manually
+docker build -t patchy-discord-bot .
+docker run -p 8000:8000 --env-file .env patchy-discord-bot
+```
+
+📖 **Complete Docker guide**: See [`docs/DOCKER.md`](docs/DOCKER.md)
    - Go to [Railway](https://railway.app)
    - Click "New Project" → "Deploy from GitHub repo"
    - Select your repository
