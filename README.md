@@ -2,6 +2,8 @@
 
 A production-ready Discord bot named "Patchy" that receives GitHub webhook events and sends beautifully formatted notifications to your Discord server. Built with Python, FastAPI, and discord.py.
 
+![ThumbNail](<Patchy Thumb Nail.png>)
+
 ## Features
 
 - 🚀 **Real-time Notifications**: Get instant Discord notifications for GitHub events
